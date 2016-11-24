@@ -1,7 +1,0 @@
-djhhjhdhdhhhdhhhhdhhdhhdhdhdhdhhdhdhdhhdhdhdhdhdhhdhdhdhsjjsjsjsjsjsjsjjsjsjsjsjhdhdgfhdjskajahsgfjdakalskjdhfghgfhdjklaskdfhhhfhdfhkslfhksldfsdsß1ß
-Großdeustchland
-$(document).ready(function(){
-	$("#go").click(function(){
-  		$("#output").html("Großdeustchland");
-  )};
-)};
