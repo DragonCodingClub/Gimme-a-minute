@@ -1,3 +1,4 @@
-You all have agreed to the following working agreements:
+MANDITORY WORKING AGREEMENTS:
 
-To be made...
+*NO dead or worn out memes. Only fresh and spicy memes.
+*
