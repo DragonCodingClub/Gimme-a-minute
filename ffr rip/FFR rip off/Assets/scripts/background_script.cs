@@ -9,7 +9,7 @@ public class background_script : MonoBehaviour {
 	private GameObject rightArrowTemplate = null;
 	private GameObject upArrowTemplate = null;
 	public int newArrowCloneDelay = 5;
-	public int arrowDistroy = 0;
+	//public int arrowDistroy = 0;
     
     
     // Use this for initialization
@@ -32,15 +32,16 @@ public class background_script : MonoBehaviour {
             lastTimeWeStartedAArrow = currentTime;
             Debug.Log("cloned");
 			GameObject newDownArrow = Instantiate(downArrowTemplate, new Vector3(1,-7,0), Quaternion.identity) as GameObject;
-			GameObject newLeftArrow = Instantiate(leftArrowTemplate, new Vector3(-3,-7,0), Quaternion.identity) as GameObject;
-			GameObject newRightArrow = Instantiate(rightArrowTemplate, new Vector3(-1,-7,0), Quaternion.identity) as GameObject;
-			GameObject newUpArrow = Instantiate(upArrowTemplate, new Vector3(3,-7,0), Quaternion.identity) as GameObject;
            // GameObject newDownArrow = newArrow.gameObject;
             newDownArrow.SetActive(true);
-			newLeftArrow.SetActive(true);
-			newRightArrow.SetActive(true);
-			newUpArrow.SetActive(true);
+
             
         }
+		//GameObject newLeftArrow = Instantiate(leftArrowTemplate, new Vector3(-3,-7,0), Quaternion.identity) as GameObject;
+		//GameObject newRightArrow = Instantiate(rightArrowTemplate, new Vector3(3,-7,0), Quaternion.identity) as GameObject;
+		//GameObject newUpArrow = Instantiate(upArrowTemplate, new Vector3(-1,-7,0), Quaternion.identity) as GameObject;
+		//newLeftArrow.SetActive(true);
+		//newRightArrow.SetActive(true);
+		//newUpArrow.SetActive(true);
     }
 }
