@@ -1,39 +1,54 @@
-﻿interface Song
+﻿enum Direction
 {
-	interface Note
-	{
-		enum Direction
-		{
-			LEFT_ARROW,
-			RIGHT_ARROW,
-			UP_ARROW,
-			DOWN_ARROW			
-		}
-
-		Direction getObject();
-		long getMillisFromStart();
-
-
-
-	}
-
-	Note [] getNotes(long startTime, long endTime);
+	LEFT_ARROW,
+	RIGHT_ARROW,
+	UP_ARROW,
+	DOWN_ARROW	
 
 }
+interface Note
+{
 
-class NoteImpl : Song.Note
+
+	Direction getObject();
+	long getMillisFromStart();
+
+
+
+}
+interface Song
+{
+	Note [] getNotes();
+}
+
+class NoteImpl : Note
 
 {
 	Direction _dir;
 	long _noteTime;
-	NoteImpl (Direction dir, long noteTime)
-	{}
+	public NoteImpl (Direction dir, long noteTime)
+	{
+		_dir = dir;
+		_noteTime = noteTime;
+	}
+	public Direction getObject()
+	{
+		return _dir;
+	}
+	public long getMillisFromStart()
+	{
+		return _noteTime;
+	}
 }
 class SongImpl : Song
 {
-	Notes [] internalNotes = [new NoteImpl(LEFT_ARROW, 500), new NoteImpl(LEFT_ARROW, 1000), new NoteImpl(LEFT_ARROW, 1200), new NoteImpl(LEFT_ARROW, 1400)]
-		getNotes(long startTime, long endTime)
+	
+	Note [] internalNotes = new Note [] {new NoteImpl(Direction.LEFT_ARROW, 500)
+										, new NoteImpl(Direction.LEFT_ARROW, 1000)
+										, new NoteImpl(Direction.LEFT_ARROW, 1200)
+										, new NoteImpl(Direction.LEFT_ARROW, 1400)};
+	public Note []	getNotes()
 	{
-
+		return internalNotes;
 	}
 }
