@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 
 public class background_script : MonoBehaviour {
+	bool appRun = true;
 	private DateTime timeWeStartedTheSong = DateTime.Now;
     private GameObject downArrowTemplate = null;
 	private GameObject leftArrowTemplate = null;
@@ -32,24 +33,36 @@ public class background_script : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        DateTime currentTime = DateTime.Now;
+		if (appRun == false) {
+			return;
+		}
+
+		DateTime currentTime = DateTime.Now;
 		TimeSpan delta = currentTime - timeWeStartedTheSong;
-		if (delta.TotalMilliseconds > timeToLaunchNextNote)
-        {
-            Debug.Log("arrow moved");
-            Debug.Log("cloned");
-			GameObject newDownArrow = Instantiate(downArrowTemplate, new Vector3(1,-7,0), Quaternion.identity) as GameObject;
-           // GameObject newDownArrow = newArrow.gameObject;
-            newDownArrow.SetActive(true);
+		if (delta.TotalMilliseconds > timeToLaunchNextNote) {
+			Debug.Log ("arrow moved");
+			Debug.Log ("cloned");
+			//increments note position, Stops if out of notes
 			positionOfNextNote = positionOfNextNote + 1;
+			if (noteArray.Length <= positionOfNextNote) {
+				Debug.Log ("Exit Now");
+				appRun = false;
+				return;
+			}
+
+			GameObject newDownArrow = Instantiate (downArrowTemplate, new Vector3 (1, -7, 0), Quaternion.identity) as GameObject;
+			// GameObject newDownArrow = newArrow.gameObject;
+			newDownArrow.SetActive (true);
 			Note theNextNote = noteArray [positionOfNextNote];
 			timeToLaunchNextNote = theNextNote.getMillisFromStart ();
-        }
+
+		}
 		//GameObject newLeftArrow = Instantiate(leftArrowTemplate, new Vector3(-3,-7,0), Quaternion.identity) as GameObject;
 		//GameObject newRightArrow = Instantiate(rightArrowTemplate, new Vector3(3,-7,0), Quaternion.identity) as GameObject;
 		//GameObject newUpArrow = Instantiate(upArrowTemplate, new Vector3(-1,-7,0), Quaternion.identity) as GameObject;
 		//newLeftArrow.SetActive(true);
 		//newRightArrow.SetActive(true);
 		//newUpArrow.SetActive(true);
-    }
+	}
+
 }
