@@ -29,6 +29,12 @@ public class background_script : MonoBehaviour {
 		rightArrowTemplate = GameObject.Find("arrow_right");
 		upArrowTemplate = GameObject.Find("arrow_up");
         //downArrow_script downArrowTemplate = GetComponent( downArrowType ) as downArrow_script;
+
+		//Music
+		GameObject audio = GameObject.Find("Audio_Source");
+		AudioSource audioConv = audio.GetComponent<AudioSource> ();
+		//AudioSource audioConv = (AudioSource)audio;
+		audioConv.Play ();
 }
 	
 	// Update is called once per frame
