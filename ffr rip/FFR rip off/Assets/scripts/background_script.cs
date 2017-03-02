@@ -36,7 +36,8 @@ public class background_script : MonoBehaviour {
 		//AudioSource audioConv = (AudioSource)audio;
 		audioConv.Play ();
 }
-	
+		
+
 	// Update is called once per frame
 	void Update () {
 		if (appRun == false) {
@@ -63,6 +64,17 @@ public class background_script : MonoBehaviour {
 			timeToLaunchNextNote = theNextNote.getMillisFromStart ();
 
 		}
+
+
+
+		if (Input.GetKeyDown("d") ) {
+			Debug.Log("d key was pressed");
+			//test if arrow is in right place when d is pressed
+
+
+
+	}
+
 		//GameObject newLeftArrow = Instantiate(leftArrowTemplate, new Vector3(-3,-7,0), Quaternion.identity) as GameObject;
 		//GameObject newRightArrow = Instantiate(rightArrowTemplate, new Vector3(3,-7,0), Quaternion.identity) as GameObject;
 		//GameObject newUpArrow = Instantiate(upArrowTemplate, new Vector3(-1,-7,0), Quaternion.identity) as GameObject;
