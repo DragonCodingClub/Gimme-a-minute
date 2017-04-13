@@ -1,0 +1,7 @@
+5.4.0f3:2.3.0.0
+StandaloneWindows
+D:/h4/installations/Editor/Data/Managed/UnityEngine.dll
+D:/h4/installations/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll
+D:/h4/installations/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll
+D:/h4/installations/Editor/Data/Managed/UnityEditor.dll
+D:/h4/installations/Editor/Data\Managed/Mono.Cecil.dll
