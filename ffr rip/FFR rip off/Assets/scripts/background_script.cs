@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
 public class background_script : MonoBehaviour {
 	bool appRun = true;
@@ -15,6 +16,8 @@ public class background_script : MonoBehaviour {
 	private Song songToPlay = null;
 	//public int arrowDistroy = 0;
 	private Note[] noteArray = null;
+	private List<GameObject> notesInFlight = new List<GameObject> ();
+	private const double NOTE_DELAY = 4.44*10; //calculated from board
     
     // Use this for initialization
     void Start () {
@@ -40,24 +43,45 @@ public class background_script : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		DateTime currentTime = DateTime.Now;
+		TimeSpan delta = currentTime - timeWeStartedTheSong;
+		
+		if (Input.GetKeyDown ("d")) {
+			Debug.Log ("d key was pressed");
+			Debug.Log ("Current Time: " + currentTime);
+			Debug.Log ("delta: " + delta);
+			Note noteToCheck = null;
+			double timeFromSongStart = delta.TotalMilliseconds;
+			int listSize = noteArray.Length;
+			for (int i = 0; i < listSize; i++) {
+				noteToCheck = noteArray [i];
+				long timeOfNote = noteToCheck.getMillisFromStart ();
+				double earliestNotePress = timeOfNote + NOTE_DELAY - 0.5;
+				double latestNotePress = earliestNotePress + 1;
+				if ((earliestNotePress < timeFromSongStart) && (timeFromSongStart < latestNotePress)) {
+					Debug.Log ("WE DID IT!");
+				}
+			}
+		}
+
 		if (appRun == false) {
 			return;
 		}
 
-		DateTime currentTime = DateTime.Now;
-		TimeSpan delta = currentTime - timeWeStartedTheSong;
+		
 		if (delta.TotalMilliseconds > timeToLaunchNextNote) {
 			Debug.Log ("arrow moved");
 			Debug.Log ("cloned");
 			//increments note position, Stops if out of notes
 			positionOfNextNote = positionOfNextNote + 1;
 			if (noteArray.Length <= positionOfNextNote) {
-				Debug.Log ("Exit Now");
+				Debug.Log ("Exit Spawning Now");
 				appRun = false;
 				return;
 			}
 
 			GameObject newDownArrow = Instantiate (downArrowTemplate, new Vector3 (1, -7, 0), Quaternion.identity) as GameObject;
+			notesInFlight.Add (newDownArrow);
 			// GameObject newDownArrow = newArrow.gameObject;
 			newDownArrow.SetActive (true);
 			Note theNextNote = noteArray [positionOfNextNote];
@@ -67,13 +91,11 @@ public class background_script : MonoBehaviour {
 
 
 
-		if (Input.GetKeyDown("d") ) {
-			Debug.Log("d key was pressed");
+
 			//test if arrow is in right place when d is pressed
 
 
 
-	}
 
 		//GameObject newLeftArrow = Instantiate(leftArrowTemplate, new Vector3(-3,-7,0), Quaternion.identity) as GameObject;
 		//GameObject newRightArrow = Instantiate(rightArrowTemplate, new Vector3(3,-7,0), Quaternion.identity) as GameObject;
